@@ -4,9 +4,11 @@ plugins {
     id 'com.github.ben-manes.versions' version '0.42.0'
     id 'application'
     id 'checkstyle'
+    id 'jacoco'
 }
 
 apply plugin: 'checkstyle'
+
 
 checkstyle {
     configFile file("config/checkstyle/checkstyle.xml")
@@ -41,10 +43,30 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'info.picocli:picocli:4.6.3'
     annotationProcessor 'info.picocli:picocli-codegen:4.6.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
 }
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 run {
