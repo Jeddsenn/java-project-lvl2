@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import static hexlet.code.Differ.genPath;
+
 
 @Command (
         name = "gendiff",
@@ -47,18 +49,8 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        String relativePath1 = filepath1;
-        if (!filepath1.contains("src/main/resources/")) {
-            relativePath1 = "src/main/resources/" + filepath1;
-        }
-        String relativePath2 = filepath2;
-        if (!filepath2.contains("src/main/resources/")) {
-            relativePath2 = "src/main/resources/" + filepath2;
-        }
-
-        String fileFirstJson = Files.readString(Paths.get(relativePath1).toAbsolutePath().normalize());
-        String fileSecondJson = Files.readString(Paths.get(relativePath2).toAbsolutePath().normalize());
-
+        String fileFirstJson = genPath(filepath1);
+        String fileSecondJson = genPath(filepath2);
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> mapFirst = mapper.readValue(fileFirstJson, new TypeReference<>() {
