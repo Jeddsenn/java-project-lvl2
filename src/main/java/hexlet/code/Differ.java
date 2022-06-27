@@ -77,6 +77,10 @@ public class Differ {
         if (!filePath.startsWith("/home")) {
             relativeanabspathPath = "src/main/resources/" + filePath;
         }
+        if (!Path.of(relativeanabspathPath).toFile().exists())
+        {
+            relativeanabspathPath = "src/test/resources/" + filePath;
+        }
         return Files.readString(Paths.get(relativeanabspathPath).toAbsolutePath().normalize());
     }
 
