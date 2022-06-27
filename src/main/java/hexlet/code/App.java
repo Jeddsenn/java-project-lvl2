@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
