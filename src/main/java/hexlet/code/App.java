@@ -1,20 +1,11 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.net.URI;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 

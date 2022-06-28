@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class Differ {
     private static class KeyDifference {
-        String keyValue = "";
-        String firstValue = "";
-        String secondValue = "";
-        boolean isInFirstJson = false;
-        boolean isInSecondJson = false;
+        private String keyValue = "";
+        private String firstValue = "";
+        private String secondValue = "";
+        private boolean isInFirstJson = false;
+        private boolean isInSecondJson = false;
 
         @Override
         public String toString() {
