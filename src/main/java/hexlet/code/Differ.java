@@ -80,4 +80,9 @@ public class Differ {
         }
         return Files.readString(Paths.get(relativeanabspathPath).toAbsolutePath().normalize());
     }
+
+/*    public static String genPath(Path filePath){
+        filePath = filePath.toAbsolutePath().normalize();
+        return String.valueOf(filePath);
+    }*/
 }
