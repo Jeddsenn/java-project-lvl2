@@ -2,17 +2,14 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
-
 import static hexlet.code.Differ.genPath;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DifferTest {
 
@@ -35,17 +32,15 @@ class DifferTest {
         String fileSecondJson = genPath(path2);
         String fileThirdJson = genPath(path3);
 
-
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> mapFirst = mapper.readValue(fileFirstJson, new TypeReference<>() {
         });
         Map<String, Object> mapSecond = mapper.readValue(fileSecondJson, new TypeReference<>() {
         });
-        var asss = new Differ().generate(mapFirst, mapSecond).toString();
+        var diff = new Differ().generate(mapFirst, mapSecond);
 
-        assertEquals(fileThirdJson, asss);
+        assertEquals(fileThirdJson, diff);
     }
-
 
 
 }

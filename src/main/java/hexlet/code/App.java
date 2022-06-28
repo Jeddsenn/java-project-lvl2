@@ -1,14 +1,18 @@
 package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
 import static hexlet.code.Differ.genPath;
 
 
@@ -27,9 +31,9 @@ public class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format", paramLabel = "format")
     private String format;
     @Parameters(index = "0", description = "path to first file", paramLabel = "filepath1")
-    private String filepath1;
+    private Path filepath1;
     @Parameters(index = "1", description = "path to second file", paramLabel = "filepath2")
-    private String filepath2;
+    private Path filepath2;
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -41,10 +45,14 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
 
-        String fileFirstJson = genPath(filepath1);
-        String fileSecondJson = genPath(filepath2);
 
-        ObjectMapper mapper = new ObjectMapper();
+        String fileFirstJson = genPath(String.valueOf(filepath1));
+        String fileSecondJson = genPath(String.valueOf(filepath2));
+
+//        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+
         Map<String, Object> mapFirst = mapper.readValue(fileFirstJson, new TypeReference<>() {
         });
         Map<String, Object> mapSecond = mapper.readValue(fileSecondJson, new TypeReference<>() {
