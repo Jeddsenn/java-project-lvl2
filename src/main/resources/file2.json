@@ -1,7 +1,5 @@
 {
   "timeout": 20,
   "verbose": true,
-  "host": "hexlet.io",
-  "asdasd": "asdddsasss",
-  "azaza": "lalka"
+  "host": "hexlet.io"
 }

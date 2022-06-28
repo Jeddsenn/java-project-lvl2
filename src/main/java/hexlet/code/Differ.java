@@ -66,10 +66,8 @@ public class Differ {
             resultString.append(diff.toString());
         }
         resultString.append("}");
-
         return resultString.toString();
     }
-
 
     public static String genPath(String filePath) throws IOException {
 
@@ -77,12 +75,9 @@ public class Differ {
         if (!filePath.startsWith("/home")) {
             relativeanabspathPath = "src/main/resources/" + filePath;
         }
-        if (!Path.of(relativeanabspathPath).toFile().exists())
-        {
+        if (!Path.of(relativeanabspathPath).toFile().exists()) {
             relativeanabspathPath = "src/test/resources/" + filePath;
         }
         return Files.readString(Paths.get(relativeanabspathPath).toAbsolutePath().normalize());
     }
-
-
 }
