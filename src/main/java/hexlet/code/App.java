@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import static hexlet.code.Parser.generatePathToFile;
+import static hexlet.code.Parser.parseJsonToMap;
 
 
 @Command (
@@ -34,25 +35,29 @@ public class App implements Callable<Integer> {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+
         CommandLine commandLine = new CommandLine(new App());
         commandLine.execute(args);
     }
 
     @Override
     public Integer call() throws Exception {
-
+/*
         String fileFirstJson = generatePathToFile(String.valueOf(filepath1));
         String fileSecondJson = generatePathToFile(String.valueOf(filepath2));
-
+*/
+//      System.out.println(getFileExtension(String.valueOf(filepath1)));
 //      ObjectMapper mapper = new ObjectMapper();
 
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+/*
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        Map<String, Object> mapFirst = objectMapper.readValue(fileFirstJson, new TypeReference<>() {
+        });
+        Map<String, Object> mapSecond = objectMapper.readValue(fileSecondJson, new TypeReference<>() {
+        });
+*/
 
-        Map<String, Object> mapFirst = mapper.readValue(fileFirstJson, new TypeReference<>() {
-        });
-        Map<String, Object> mapSecond = mapper.readValue(fileSecondJson, new TypeReference<>() {
-        });
-        System.out.println(new Differ().generate(mapFirst, mapSecond));
+        System.out.println(new Differ().generate(parseJsonToMap(String.valueOf(filepath1)), parseJsonToMap(String.valueOf(filepath2))));
         return 0;
     }
 }

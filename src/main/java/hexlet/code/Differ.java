@@ -32,6 +32,7 @@ public class Differ {
         }
     }
     public String generate(Map<String, Object> firstMap, Map<String, Object> secondMap) {
+
         List<KeyDifference> result = new ArrayList<>();
 
         for (String key : firstMap.keySet()) {
@@ -64,5 +65,4 @@ public class Differ {
         resultString.append("}");
         return resultString.toString();
     }
-
 }
