@@ -1,9 +1,5 @@
 package hexlet.code;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -69,20 +65,4 @@ public class Differ {
         return resultString.toString();
     }
 
-    public static String genPath(String filePath) throws IOException {
-
-        String relativeanabspathPath = filePath;
-        if (!filePath.startsWith("/home")) {
-            relativeanabspathPath = "src/main/resources/" + filePath;
-        }
-        if (!Path.of(relativeanabspathPath).toFile().exists()) {
-            relativeanabspathPath = "src/test/resources/" + filePath;
-        }
-        return Files.readString(Paths.get(relativeanabspathPath).toAbsolutePath().normalize());
-    }
-
-/*    public static String genPath(Path filePath){
-        filePath = filePath.toAbsolutePath().normalize();
-        return String.valueOf(filePath);
-    }*/
 }

@@ -7,13 +7,10 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.File;
-import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import static hexlet.code.Differ.genPath;
+import static hexlet.code.Parser.generatePathToFile;
 
 
 @Command (
@@ -38,18 +35,16 @@ public class App implements Callable<Integer> {
     public static void main(String[] args) {
         System.out.println("Hello World!");
         CommandLine commandLine = new CommandLine(new App());
-        commandLine.parseArgs(args);
         commandLine.execute(args);
     }
 
     @Override
     public Integer call() throws Exception {
 
+        String fileFirstJson = generatePathToFile(String.valueOf(filepath1));
+        String fileSecondJson = generatePathToFile(String.valueOf(filepath2));
 
-        String fileFirstJson = genPath(String.valueOf(filepath1));
-        String fileSecondJson = genPath(String.valueOf(filepath2));
-
-//        ObjectMapper mapper = new ObjectMapper();
+//      ObjectMapper mapper = new ObjectMapper();
 
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
