@@ -18,15 +18,15 @@ public class Differ {
             String result = "";
             if (isInFirstJson && isInSecondJson) {
                 if (!firstValue.equals(secondValue)) {
-                    result = result + "- " + keyValue + ": " + firstValue + "\n";
-                    result = result + "+ " + keyValue + ": " + secondValue + "\n";
+                    result = result + "- " + keyValue + ": " + firstValue + "\n  ";
+                    result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
                 } else {
-                    result = result + "  " + keyValue + ": " + firstValue + "\n";
+                    result = result + "  " + keyValue + ": " + firstValue + "\n  ";
                 }
             } else if (isInFirstJson) {
-                result = result + "- " + keyValue + ": " + firstValue + "\n";
+                result = result + "- " + keyValue + ": " + firstValue + "\n  ";
             } else if (isInSecondJson) {
-                result = result + "+ " + keyValue + ": " + secondValue + "\n";
+                result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
             }
             return result;
         }
@@ -58,10 +58,13 @@ public class Differ {
         }
 
         result.sort(Comparator.comparing(a -> a.keyValue));
-        StringBuilder resultString = new StringBuilder("{\n");
+        StringBuilder resultString = new StringBuilder("{\n  ");
         for (KeyDifference diff : result) {
             resultString.append(diff.toString());
         }
+        resultString.toString();
+        resultString.deleteCharAt(resultString.length() - 1);
+        resultString.deleteCharAt(resultString.length() - 1);
         resultString.append("}");
         return resultString.toString();
     }
