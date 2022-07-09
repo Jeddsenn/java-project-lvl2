@@ -1,48 +1,25 @@
 package hexlet.code;
 
+import hexlet.code.ComparedData.KeyDifference;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 public class Differ {
-    private static class KeyDifference {
-        private String keyValue = "";
-        private String firstValue = "";
-        private String secondValue = "";
-        private boolean isInFirstJson = false;
-        private boolean isInSecondJson = false;
 
-        @Override
-        public String toString() {
-            String result = "";
-            if (isInFirstJson && isInSecondJson) {
-                if (!firstValue.equals(secondValue)) {
-                    result = result + "- " + keyValue + ": " + firstValue + "\n  ";
-                    result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
-                } else {
-                    result = result + "  " + keyValue + ": " + firstValue + "\n  ";
-                }
-            } else if (isInFirstJson) {
-                result = result + "- " + keyValue + ": " + firstValue + "\n  ";
-            } else if (isInSecondJson) {
-                result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
-            }
-            return result;
-        }
-    }
-    public String generate(Map<String, Object> firstMap, Map<String, Object> secondMap) {
-
+    public static String generate(Map<String, Object> firstMap, Map<String, Object> secondMap) {
         List<KeyDifference> result = new ArrayList<>();
 
         for (String key : firstMap.keySet()) {
             KeyDifference tmp = new KeyDifference();
-            tmp.keyValue = key;
-            tmp.isInFirstJson = true;
-            tmp.firstValue = String.valueOf(firstMap.get(key));
+            tmp.setKeyValue(key);
+            tmp.setInFirstJson(true);
+            tmp.setFirstValue(String.valueOf(firstMap.get(key)));
             if (secondMap.containsKey(key)) {
-                tmp.isInSecondJson = true;
-                tmp.secondValue = String.valueOf(secondMap.get(key));
+                tmp.setInSecondJson(true);
+                tmp.setSecondValue(String.valueOf(secondMap.get(key)));
             }
             result.add(tmp);
         }
@@ -50,19 +27,20 @@ public class Differ {
         for (String key : secondMap.keySet()) {
             if (!firstMap.containsKey(key)) {
                 KeyDifference tempObj = new KeyDifference();
-                tempObj.keyValue = key;
-                tempObj.isInSecondJson = true;
-                tempObj.secondValue = String.valueOf(secondMap.get(key));
+                tempObj.setKeyValue(key);
+                tempObj.setInSecondJson(true);
+                tempObj.setSecondValue(String.valueOf(secondMap.get(key)));
                 result.add(tempObj);
             }
         }
 
-        result.sort(Comparator.comparing(a -> a.keyValue));
+        result.sort(Comparator.comparing(KeyDifference::getKeyValue));
+
         StringBuilder resultString = new StringBuilder("{\n  ");
         for (KeyDifference diff : result) {
-            resultString.append(diff.toString());
+            resultString.append(diff.formatter());
         }
-        resultString.toString();
+
         resultString.deleteCharAt(resultString.length() - 1);
         resultString.deleteCharAt(resultString.length() - 1);
         resultString.append("}");
