@@ -10,14 +10,14 @@ import java.util.Map;
 
 
 public class Parser {
-    public static Map<String, Object> parseJsonToMap(String filepath1) throws Exception {
+    public static Map<String, Object> parseJsonToMap(String filepath) throws Exception {
         ObjectMapper objectMapper;
-        if (getFileExtension(filepath1).equals(".json")) {
+        if (getFileExtension(filepath).equals(".json")) {
             objectMapper = new ObjectMapper();
         } else {
             objectMapper = new ObjectMapper(new YAMLFactory());
         }
-        String fileFirstJson = generatePathToFile(filepath1);
+        String fileFirstJson = generatePathToFile(filepath);
         return objectMapper.readValue(fileFirstJson, new TypeReference<>() {
         });
     }
