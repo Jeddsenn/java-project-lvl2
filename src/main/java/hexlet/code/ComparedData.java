@@ -51,7 +51,6 @@ public class ComparedData {
 
 
         public String formatter() {
-
             String result = "";
             if (isInFirstJson && isInSecondJson) {
                 if (!firstValue.equals(secondValue)) {
@@ -67,36 +66,5 @@ public class ComparedData {
             }
             return result;
         }
-
-
-/*        public List<KeyDifference> generateListOfComparedobjects(Map<String, Object> firstMap, Map<String, Object> secondMap) {
-            List<KeyDifference> result = new ArrayList<>();
-
-            for (String key : firstMap.keySet()) {
-                ComparedData.KeyDifference tmp = new ComparedData.KeyDifference();
-                tmp.setKeyValue(key);
-                tmp.setInFirstJson(true);
-                tmp.setFirstValue(String.valueOf(firstMap.get(key)));
-                if (secondMap.containsKey(key)) {
-                    tmp.setInSecondJson(true);
-                    tmp.setSecondValue(String.valueOf(secondMap.get(key)));
-                }
-                result.add(tmp);
-            }
-
-            for (String key : secondMap.keySet()) {
-                if (!firstMap.containsKey(key)) {
-                    ComparedData.KeyDifference tempObj = new ComparedData.KeyDifference();
-                    tempObj.setKeyValue(key);
-                    tempObj.setInSecondJson(true);
-                    tempObj.setSecondValue(String.valueOf(secondMap.get(key)));
-                    result.add(tempObj);
-                }
-            }
-
-            result.sort(Comparator.comparing(ComparedData.KeyDifference::getKeyValue));
-            return result;
-
-        }*/
     }
 }

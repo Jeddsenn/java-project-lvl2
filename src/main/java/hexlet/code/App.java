@@ -4,17 +4,14 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import java.nio.file.Path;
 import java.util.concurrent.Callable;
-
 import static hexlet.code.Differ.generate;
-import static hexlet.code.Parser.parseJsonToMap;
 
 
 @Command (
         name = "gendiff",
         description = "Compares two configuration files and shows a difference.",
-        version = "0.0.8"
+        version = "0.0.9"
 )
 
 
@@ -23,7 +20,7 @@ public class App implements Callable<Integer> {
     private boolean usageHelpRequest;
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     private boolean versionInfoRequest;
-    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format", paramLabel = "format")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "the file to use (default: ${DEFAULT-VALUE})", paramLabel = "format")
     private String format;
     @Parameters(index = "0", description = "path to first file", paramLabel = "filepath1")
     private String filepath1;
@@ -48,9 +45,7 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-
-
-        System.out.println(generate(filepath1, filepath2));
+        System.out.println(generate(format,filepath1, filepath2));
         return 0;
     }
 }
