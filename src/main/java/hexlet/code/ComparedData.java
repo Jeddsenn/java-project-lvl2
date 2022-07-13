@@ -1,11 +1,18 @@
 package hexlet.code;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.Objects;
 
 public class ComparedData {
 
-    public static List<Map<String, Object>> generateListOfDifferences(Map<String, Object> firstMap, Map<String, Object> secondMap) {
+    public static List<Map<String, Object>>
+        generateListOfDifferences(Map<String, Object> firstMap, Map<String, Object> secondMap) {
         List<Map<String, Object>> resultList = new ArrayList<>();
         Set<String> keySet = new TreeSet<>(firstMap.keySet());
         keySet.addAll(secondMap.keySet());

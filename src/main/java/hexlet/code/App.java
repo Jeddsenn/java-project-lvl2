@@ -15,12 +15,13 @@ import static hexlet.code.Differ.generate;
 )
 
 
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
     private boolean usageHelpRequest;
     @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     private boolean versionInfoRequest;
-    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "the file to use (default: ${DEFAULT-VALUE})", paramLabel = "format")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
+            description = "the file to use (default: ${DEFAULT-VALUE})", paramLabel = "format")
     private String format;
     @Parameters(index = "0", description = "path to first file", paramLabel = "filepath1")
     private String filepath1;
