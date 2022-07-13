@@ -1,103 +1,37 @@
 package hexlet.code;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ComparedData {
 
-    static class KeyDifference {
-        private String keyValue = "";
-        private String firstValue = "";
-        private String secondValue = "";
-        private boolean isInFirstJson = false;
-        private boolean isInSecondJson = false;
+    public static List<Map<String, Object>> generateListOfDifferences(Map<String, Object> firstMap, Map<String, Object> secondMap) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        Set<String> keySet = new TreeSet<>(firstMap.keySet());
+        keySet.addAll(secondMap.keySet());
 
-        public String getKeyValue() {
-            return keyValue;
-        }
-
-        public void setKeyValue(String keyValue) {
-            this.keyValue = keyValue;
-        }
-
-        public String getFirstValue() {
-            return firstValue;
-        }
-
-        public void setFirstValue(String firstValue) {
-            this.firstValue = firstValue;
-        }
-
-        public String getSecondValue() {
-            return secondValue;
-        }
-
-        public void setSecondValue(String secondValue) {
-            this.secondValue = secondValue;
-        }
-
-        public boolean isInFirstJson() {
-            return isInFirstJson;
-        }
-
-        public void setInFirstJson(boolean inFirstJson) {
-            isInFirstJson = inFirstJson;
-        }
-
-        public boolean isInSecondJson() {
-            return isInSecondJson;
-        }
-
-        public void setInSecondJson(boolean inSecondJson) {
-            isInSecondJson = inSecondJson;
-        }
-
-
-        public String formatter() {
-            String result = "";
-            if (isInFirstJson && isInSecondJson) {
-                if (!firstValue.equals(secondValue)) {
-                    result = result + "- " + keyValue + ": " + firstValue + "\n  ";
-                    result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
-                } else {
-                    result = result + "  " + keyValue + ": " + firstValue + "\n  ";
-                }
-            } else if (isInFirstJson) {
-                result = result + "- " + keyValue + ": " + firstValue + "\n  ";
-            } else if (isInSecondJson) {
-                result = result + "+ " + keyValue + ": " + secondValue + "\n  ";
+        for (String key : keySet) {
+            Map<String, Object> map = new TreeMap<>();
+            if (firstMap.containsKey(key) && !secondMap.containsKey(key)) {
+                map.put("status", "deleted");
+                map.put("key", key);
+                map.put("value", firstMap.get(key));   // -
+            } else if (secondMap.containsKey(key) && !firstMap.containsKey(key)) {
+                map.put("status", "added");
+                map.put("key", key);
+                map.put("value", secondMap.get(key));  // +
+            } else if (Objects.equals(firstMap.get(key), (secondMap.get(key)))) {
+                map.put("status", "same"); // тут без символов
+                map.put("key", key);
+                map.put("value", firstMap.get(key));
+            } else {
+                map.put("status", "changed");
+                map.put("key", key);
+                map.put("value1", firstMap.get(key));   //  -
+                map.put("value2", secondMap.get(key));  // +
             }
-            return result;
+            resultList.add(map);
         }
-    }
-    public static List<KeyDifference> generateList(Map<String, Object> firstMap, Map<String, Object> secondMap) {
-        List<KeyDifference> result = new ArrayList<>();
-
-        for (String key : firstMap.keySet()) {
-            KeyDifference tmp = new KeyDifference();
-            tmp.setKeyValue(key);
-            tmp.setInFirstJson(true);
-            tmp.setFirstValue(String.valueOf(firstMap.get(key)));
-            if (secondMap.containsKey(key)) {
-                tmp.setInSecondJson(true);
-                tmp.setSecondValue(String.valueOf(secondMap.get(key)));
-            }
-            result.add(tmp);
-        }
-
-        for (String key : secondMap.keySet()) {
-            if (!firstMap.containsKey(key)) {
-                KeyDifference tempObj = new KeyDifference();
-                tempObj.setKeyValue(key);
-                tempObj.setInSecondJson(true);
-                tempObj.setSecondValue(String.valueOf(secondMap.get(key)));
-                result.add(tempObj);
-            }
-        }
-        result.sort(Comparator.comparing(KeyDifference::getKeyValue));
-        return result;
+        return resultList;
     }
 }

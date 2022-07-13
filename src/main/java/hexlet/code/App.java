@@ -11,7 +11,7 @@ import static hexlet.code.Differ.generate;
 @Command (
         name = "gendiff",
         description = "Compares two configuration files and shows a difference.",
-        version = "0.0.9"
+        version = "0.1.0"
 )
 
 
@@ -27,15 +27,6 @@ public class App implements Callable<Integer> {
     @Parameters(index = "1", description = "path to second file", paramLabel = "filepath2")
     private String filepath2;
 
-    public String getFilepath1() {
-        return filepath1;
-    }
-
-    public String getFilepath2() {
-        return filepath2;
-    }
-
-
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -45,7 +36,7 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println(generate(format,filepath1, filepath2));
+        System.out.println(generate(format, filepath1, filepath2));
         return 0;
     }
 }
