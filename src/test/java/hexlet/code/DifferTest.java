@@ -52,4 +52,14 @@ class DifferTest {
         String output = generate(format, path1, path2);
         assertEquals(fileThirdJson, output);
     }
+    @Test
+    void testGenerateNestedPlainJson() throws Exception {
+        String format = "plain";
+        String path1 = "src/test/resources/file41.yaml";
+        String path2 = "src/test/resources/file42.yaml";
+        String path3 = "src/test/resources/file34Plain.json";
+        String fileThirdJson = generatePathToFile(path3);
+        String output = generate(format, path1, path2);
+        assertEquals(fileThirdJson, output);
+    }
 }
