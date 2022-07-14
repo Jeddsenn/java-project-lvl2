@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonFormatter {
-    public static String generateJsonOutput(List<Map<String, Object>> listOfDifference) throws JsonProcessingException {
-            ObjectMapper objectMapper = new ObjectMapper();
-            String result = objectMapper.writeValueAsString(listOfDifference);
-            // мож тут потом цикл пиздануть по каждой мапе по отельности для красоты вывода?
-            result = toJsonFormat(result);
-            return result;
+    public static String generateJsonOutput(List<Map<String, Object>> listOfDifferences) throws JsonProcessingException {
+        StringBuilder sb = new StringBuilder("");
+        ObjectMapper objectMapper = new ObjectMapper();
+        for (Map<String, Object> list: listOfDifferences){
+            sb.append(objectMapper.writeValueAsString(list));
+        }
+        return toJsonFormat(sb.toString());
         }
 
     private static String toJsonFormat(String result) {
