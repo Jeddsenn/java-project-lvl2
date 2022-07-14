@@ -2,12 +2,8 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
-import static hexlet.code.Differ.generate;
-import static hexlet.code.Parser.generatePathToFile;
 import static hexlet.code.Parser.getFileExtension;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
 

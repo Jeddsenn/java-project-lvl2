@@ -1,10 +1,7 @@
 package hexlet.code.Formatters;
 
-import hexlet.code.ComparedData;
-
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class StylishFormatter {
 

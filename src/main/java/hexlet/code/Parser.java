@@ -15,7 +15,8 @@ public class Parser {
         String filePath = generatePathToFile(filepath);
         if (getFileExtension(filepath).equals("json")) {
             objectMapper = new ObjectMapper();
-        } if (getFileExtension(filepath).equals("yaml")){
+        }
+        if (getFileExtension(filepath).equals("yaml")) {
             objectMapper = new ObjectMapper(new YAMLFactory());
         }
         return objectMapper.readValue(filePath, new TypeReference<>() {
