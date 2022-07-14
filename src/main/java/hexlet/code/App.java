@@ -30,7 +30,6 @@ public final class App implements Callable<Integer> {
 
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         CommandLine commandLine = new CommandLine(new App());
         commandLine.execute(args);
     }
