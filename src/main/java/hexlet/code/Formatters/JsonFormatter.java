@@ -10,11 +10,11 @@ public class JsonFormatter {
     public static String generateJsonOutput(List<Map<String, Object>> listOfDifferences) throws JsonProcessingException {
         StringBuilder sb = new StringBuilder("");
         ObjectMapper objectMapper = new ObjectMapper();
-        for (Map<String, Object> list: listOfDifferences){
+        for (Map<String, Object> list : listOfDifferences) {
             sb.append(objectMapper.writeValueAsString(list));
         }
         return toJsonFormat(sb.toString());
-        }
+    }
 
     private static String toJsonFormat(String result) {
             return result.replace(":", ": ")
@@ -24,3 +24,4 @@ public class JsonFormatter {
                     .replace("}]", "\n}\n]");
         }
 }
+
