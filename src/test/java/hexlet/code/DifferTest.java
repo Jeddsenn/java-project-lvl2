@@ -62,4 +62,14 @@ class DifferTest {
         String output = generate(format, path1, path2);
         assertEquals(fileThirdJson, output);
     }
+    @Test
+    void testGenerateJsonlikeJson() throws Exception {
+        String format = "json";
+        String path1 = "src/test/resources/file1.json";
+        String path2 = "src/test/resources/file2.json";
+        String path3 = "src/test/resources/file12Jsonn";
+        String fileThirdJson = generatePathToFile(path3);
+        String output = generate(format, path1, path2);
+        assertEquals(fileThirdJson, output);
+    }
 }
