@@ -13,7 +13,7 @@ public class Formatter {
             case "stylish" -> generateStylishOutput(listOfDifferences);
             case "json" -> generateJsonOutput(listOfDifferences);
             case "plain" -> generatePlainOutput(listOfDifferences);
-            default -> throw new Exception("No such format");
+            default -> throw new Exception(format + "is not supported");
         };
     }
 }
