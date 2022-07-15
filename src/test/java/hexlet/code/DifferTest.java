@@ -60,6 +60,16 @@ class DifferTest {
         assertEquals(fileThirdJson, output);
     }
     @Test
+    void testGenerateNestedJsonlikeJson() throws Exception {
+        String format = "json";
+        String path1 = "src/test/resources/file31.json";
+        String path2 = "src/test/resources/file32.json";
+        String path3 = "src/test/resources/file34JsonnNested";
+        String fileThirdJson = generatePathToFile(path3);
+        String output = generate(path1, path2, format);
+        assertEquals(fileThirdJson, output);
+    }
+    @Test
     void testGenerateNestedStylishYaml() throws Exception {
         String format = "stylish";
         String path1 = "src/test/resources/file41.yaml";
