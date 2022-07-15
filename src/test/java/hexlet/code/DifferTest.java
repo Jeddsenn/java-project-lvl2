@@ -41,17 +41,7 @@ class DifferTest {
         assertEquals(fileThirdJson, output);
     }
 
-    @Test
-    void testGenerateNestedStylishYaml() throws Exception {
-        String format = "stylish";
-        String path1 = "src/test/resources/file41.yaml";
-        String path2 = "src/test/resources/file42.yaml";
-        String path3 = "src/test/resources/file34.json";
-        String fileThirdJson = generatePathToFile(path3);
 
-        String output = generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
-    }
     @Test
     void testGenerateNestedPlainJson() throws Exception {
         String format = "plain";
