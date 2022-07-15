@@ -36,7 +36,7 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println(generate(format, filepath1, filepath2));
+        System.out.println(generate(filepath1, filepath2, format));
         return 0;
     }
 }
