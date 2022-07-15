@@ -36,7 +36,6 @@ class DifferTest {
         String path2 = "src/test/resources/file32.json";
         String path3 = "src/test/resources/file34.json";
         String fileThirdJson = generatePathToFile(path3);
-
         String output = generate(path1, path2, "stylish");
         assertEquals(fileThirdJson, output);
     }
@@ -67,8 +66,7 @@ class DifferTest {
         String path2 = "src/test/resources/file42.yaml";
         String path3 = "src/test/resources/file34.json";
         String fileThirdJson = generatePathToFile(path3);
-
-        String output = generate(path1, path2, format);
+        String output = generate(path1, path2, "stylish");
         assertEquals(fileThirdJson, output);
     }
 }
