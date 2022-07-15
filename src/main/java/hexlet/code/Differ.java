@@ -16,4 +16,7 @@ public class Differ {
         List<Map<String, Object>> listOfDifference = generateListOfDifferences(firstMap, secondMap);
         return Formatter.format(format, listOfDifference);
     }
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
+    }
 }
