@@ -45,8 +45,8 @@ public class PlainFormatter {
                         .append("\n");
             }
         }
-        result.trimToSize();
-        return result.toString();
+        String r = result.toString();
+        return r.trim();
     }
 
     private static Object modifyOutputOfComplexObject(Object v) {
