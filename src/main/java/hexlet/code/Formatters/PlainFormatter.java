@@ -36,8 +36,7 @@ public class PlainFormatter {
                         .append(" was added with value: ")
                         .append(value)
                         .append("\n");
-            }
-            else if (status.equals(CHANGED)) {                     //updated
+            } else if (status.equals(CHANGED)) {                     //updated
                 result.append(PROPERTY)
                         .append(key)
                         .append(" was updated. From ")
