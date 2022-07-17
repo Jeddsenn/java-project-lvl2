@@ -7,8 +7,6 @@ import picocli.CommandLine.Parameters;
 
 import java.util.concurrent.Callable;
 
-import static hexlet.code.Differ.generateDiff;
-
 
 @Command (
         name = "gendiff",
@@ -38,7 +36,7 @@ public final class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        System.out.println(generateDiff(filepath1, filepath2, format));
+        System.out.println(Differ.generate(filepath1, filepath2, format));
         return 0;
     }
 }
