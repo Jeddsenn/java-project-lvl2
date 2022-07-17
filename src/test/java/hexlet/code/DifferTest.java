@@ -14,7 +14,7 @@ class DifferTest {
         String path2 = "src/test/resources/file2.json";
         String path3 = "src/test/resources/file12.json";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "stylish");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
 
@@ -25,7 +25,7 @@ class DifferTest {
         String path2 = "src/test/resources/file2.yaml";
         String path3 = "src/test/resources/file12.json";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "stylish");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
 
@@ -36,7 +36,7 @@ class DifferTest {
         String path2 = "src/test/resources/file32.json";
         String path3 = "src/test/resources/file34.json";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "stylish");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
     @Test
@@ -46,7 +46,7 @@ class DifferTest {
         String path2 = "src/test/resources/file42.yaml";
         String path3 = "src/test/resources/file34Plain.json";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "plain");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
     @Test
@@ -56,7 +56,7 @@ class DifferTest {
         String path2 = "src/test/resources/file2.json";
         String path3 = "src/test/resources/file12Jsonn";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "json");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
     @Test
@@ -76,7 +76,7 @@ class DifferTest {
         String path2 = "src/test/resources/file42.yaml";
         String path3 = "src/test/resources/file34.json";
         String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generateDiff(path1, path2, "stylish");
+        String output = Differ.generateDiff(path1, path2, format);
         assertEquals(fileThirdJson, output);
     }
 }
