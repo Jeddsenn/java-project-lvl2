@@ -1,9 +1,9 @@
-package hexlet.code.Formatters;
+package hexlet.code.formatters;
 
 import java.util.List;
 import java.util.Map;
 
-public class StylishFormatter {
+public class Stylish {
     private static final String STATUS = "status";
     private static final String DELETED = "deleted";
     private static final String ADDED = "added";
@@ -18,7 +18,7 @@ public class StylishFormatter {
     private static final String SPACE = "    ";
     private static final String COLON = ": ";
 
-    public static String generateStylishOutput(List<Map<String, Object>> listOfDifferences) {
+    public static String render(List<Map<String, Object>> listOfDifferences) {
         StringBuilder result = new StringBuilder("{\n");
         for (Map<String, Object> l : listOfDifferences) {
             var status = l.get(STATUS);

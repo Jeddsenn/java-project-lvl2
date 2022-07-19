@@ -1,10 +1,10 @@
-package hexlet.code.Formatters;
+package hexlet.code.formatters;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class PlainFormatter {
+public class Plain {
 
     private static final String STATUS = "status";
     private static final String DELETED = "deleted";
@@ -15,7 +15,7 @@ public class PlainFormatter {
     private static final String VALUE1 = "value1";
     private static final String VALUE2 = "value2";
     private static final String PROPERTY = "Property ";
-    public static String generatePlainOutput(List<Map<String, Object>> listOfDifferences) {
+    public static String render(List<Map<String, Object>> listOfDifferences) {
         StringBuilder result = new StringBuilder();
         for (Map<String, Object> l : listOfDifferences) {
             var status = l.get(STATUS);
