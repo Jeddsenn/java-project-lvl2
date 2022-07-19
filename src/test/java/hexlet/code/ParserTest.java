@@ -2,7 +2,7 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import static hexlet.code.Parser.getFileExtension;
+import static hexlet.code.Differ.getFileExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
