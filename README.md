@@ -6,3 +6,5 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/303e1fa783dd4def811b/maintainability)](https://codeclimate.com/github/Jeddsenn/java-project-lvl2/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/303e1fa783dd4def811b/test_coverage)](https://codeclimate.com/github/Jeddsenn/java-project-lvl2/test_coverage)
+
+[![asciicast](https://asciinema.org/a/AoH1WpRlxHOvgPjpLpDhtXjpO.svg)](https://asciinema.org/a/AoH1WpRlxHOvgPjpLpDhtXjpO)
