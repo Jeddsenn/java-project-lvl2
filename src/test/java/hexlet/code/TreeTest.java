@@ -2,11 +2,10 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import static hexlet.code.ComparedData.generateListOfDifferences;
-import static hexlet.code.Parser.parseJsonToMap;
+import static hexlet.code.Tree.build;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ComparedDataTest {
+class TreeTest {
     @Test
     void testGenerate() throws Exception {
         String path1 = "src/test/resources/file1.json";
@@ -18,9 +17,9 @@ class ComparedDataTest {
                 .append(" {key=timeout, status=changed, value1=50, value2=20},")
                 .append(" {key=verbose, status=added, value=true}]")
                 .toString();
-        var a = parseJsonToMap(path1);
-        var b = parseJsonToMap(path2);
-        var c = generateListOfDifferences(a, b);
+        var a = Differ.getData(path1);
+        var b = Differ.getData(path2);
+        var c = build(a, b);
         System.out.println(c);
         assertEquals(fileThirdJson, fileThirdJson);
     }
