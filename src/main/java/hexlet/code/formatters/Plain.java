@@ -23,7 +23,6 @@ public class Plain {
             var value1 = modifyOutputOfComplexObject(addStringSymbol(l.get(VALUE1)));
             var value2 = modifyOutputOfComplexObject(addStringSymbol(l.get(VALUE2)));
             var key = addStringSymbol(l.get(KEY));
-
             if (status.equals(DELETED)) {                      //removed
                 result.append(PROPERTY)
                         .append(key)
