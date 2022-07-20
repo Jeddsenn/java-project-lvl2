@@ -19,9 +19,9 @@ public class Plain {
         StringBuilder result = new StringBuilder();
         for (Map<String, Object> l : listOfDifferences) {
             var status = l.get(STATUS);
-            var value = modifyOutputOfComplexObject(addStringSymbol(l.get(VALUE)));
-            var value1 = modifyOutputOfComplexObject(addStringSymbol(l.get(VALUE1)));
-            var value2 = modifyOutputOfComplexObject(addStringSymbol(l.get(VALUE2)));
+            var value = stringify(l.get(VALUE));
+            var value1 = stringify(l.get(VALUE1));
+            var value2 = stringify(l.get(VALUE2));
             var key = addStringSymbol(l.get(KEY));
             if (status.equals(DELETED)) {                      //removed
                 result.append(PROPERTY)
@@ -49,6 +49,15 @@ public class Plain {
         return r.trim();
     }
 
+    private static Object stringify(Object value) {
+        if (value instanceof String) {
+            return "'" + value + "'";
+        }
+        if (value instanceof Collection || value instanceof Map<?, ?>) {
+            value = "[complex value]";
+        }
+        return value;
+    }
     private static Object modifyOutputOfComplexObject(Object v) {
         if (v instanceof Collection || v instanceof Map<?, ?>) {
             return "[complex value]";
