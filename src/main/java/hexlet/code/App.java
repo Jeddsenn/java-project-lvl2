@@ -43,8 +43,8 @@ public final class App implements Callable<Integer> {
         try {
             System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new Exception("1"); //return 1; ?
+            System.out.println(e.getMessage());
+            return 1;
         }
         return 0;
     }
