@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class Parser {
     public static Map<String, Object> dataStructureToMap(String fileMap, String extension) throws Exception {
-        new ObjectMapper();
         ObjectMapper objectMapper = switch (extension) {
             case "json" -> new ObjectMapper();
             case "yaml", "yml" -> new ObjectMapper(new YAMLFactory());
