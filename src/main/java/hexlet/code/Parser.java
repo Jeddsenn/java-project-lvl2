@@ -8,26 +8,13 @@ import java.util.Map;
 
 
 public class Parser {
-    public static Map<String, Object> dataStructureToMap(String fileMap) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();  //
-        String filePath = Differ.generatePathToFile(fileMap);
-        if (Differ.getFileExtension(fileMap).equals("json")) {
-            objectMapper = new ObjectMapper();
-        }
-        if (Differ.getFileExtension(fileMap).equals("yaml") || Differ.getFileExtension(fileMap).equals("yml")) {
-            objectMapper = new ObjectMapper(new YAMLFactory());
-        }
-        return objectMapper.readValue(filePath, new TypeReference<>() {
-        });
-    }
     public static Map<String, Object> dataStructureToMap(String fileMap, String extension) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        if (extension.equals("json")) {
-            objectMapper = new ObjectMapper();
-        }
-        if (extension.equals("yaml") || extension.equals("yml")) {
-            objectMapper = new ObjectMapper(new YAMLFactory());
-        }
+        new ObjectMapper();
+        ObjectMapper objectMapper = switch (extension) {
+            case "json" -> new ObjectMapper();
+            case "yaml", "yml" -> new ObjectMapper(new YAMLFactory());
+            default -> throw new Exception(extension + " is not supported extension");
+        };
         return objectMapper.readValue(fileMap, new TypeReference<>() {
         });
     }
