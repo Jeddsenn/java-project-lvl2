@@ -58,12 +58,6 @@ public class Plain {
         }
         return value;
     }
-    private static Object modifyOutputOfComplexObject(Object v) {
-        if (v instanceof Collection || v instanceof Map<?, ?>) {
-            return "[complex value]";
-        }
-        return v;
-    }
     static Object addStringSymbol(Object value) {
         if (value instanceof String) {
             return "'" + value + "'";
