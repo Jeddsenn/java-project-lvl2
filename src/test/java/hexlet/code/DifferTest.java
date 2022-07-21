@@ -2,81 +2,81 @@ package hexlet.code;
 
 import org.junit.jupiter.api.Test;
 
-import static hexlet.code.Differ.generatePathToFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DifferTest {
 
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", fileName)
+                .toAbsolutePath().normalize();
+    }
+
+    private static String readFixture(String fileName) throws Exception {
+        Path filePath = getFixturePath(fileName);
+        return Files.readString(filePath).trim();
+    }
+
     @Test
     void testGenerateStylishJson() throws Exception {
         String format = "stylish";
-        String path1 = "src/test/resources/file1.json";
-        String path2 = "src/test/resources/file2.json";
-        String path3 = "src/test/resources/file12.json";
-        String fileThirdJson = generatePathToFile(path3);
+        String path1 = String.valueOf(getFixturePath("file1.json"));
+        String path2 = String.valueOf(getFixturePath("file2.json"));
+        String result = readFixture("result_stylish.txt");
         String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
+        assertEquals(result, output);
+    }
+
+    @Test
+    void testGeneratePlainJson() throws Exception {
+        String format = "plain";
+        String path1 = String.valueOf(getFixturePath("file1.json"));
+        String path2 = String.valueOf(getFixturePath("file2.json"));
+        String result = readFixture("result_plain.txt");
+        String output = Differ.generate(path1, path2, format);
+        assertEquals(result, output);
+    }
+
+    @Test
+    void testGenerateJsonlikeJson() throws Exception {
+        String format = "json";
+        String path1 = String.valueOf(getFixturePath("file1.json"));
+        String path2 = String.valueOf(getFixturePath("file2.json"));
+        String result = readFixture("result_json.json");
+        String output = Differ.generate(path1, path2, format);
+        assertEquals(result, output);
     }
 
     @Test
     void testGenerateStylishYaml() throws Exception {
         String format = "stylish";
-        String path1 = "src/test/resources/file1.yaml";
-        String path2 = "src/test/resources/file2.yaml";
-        String path3 = "src/test/resources/file12.json";
-        String fileThirdJson = generatePathToFile(path3);
+        String path1 = String.valueOf(getFixturePath("file1.yaml"));
+        String path2 = String.valueOf(getFixturePath("file2.yaml"));
+        String result = readFixture("result_stylish.txt");
         String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
+        assertEquals(result, output);
     }
 
     @Test
-    void testGenerateNestedStylishJson() throws Exception {
-        String format = "stylish";
-        String path1 = "src/test/resources/file31.json";
-        String path2 = "src/test/resources/file32.json";
-        String path3 = "src/test/resources/file34.json";
-        String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
-    }
-    @Test
-    void testGenerateNestedPlainJson() throws Exception {
+    void testGeneratePlainYaml() throws Exception {
         String format = "plain";
-        String path1 = "src/test/resources/file41.yaml";
-        String path2 = "src/test/resources/file42.yaml";
-        String path3 = "src/test/resources/file34Plain.json";
-        String fileThirdJson = generatePathToFile(path3);
+        String path1 = String.valueOf(getFixturePath("file1.yaml"));
+        String path2 = String.valueOf(getFixturePath("file2.yaml"));
+        String result = readFixture("result_plain.txt");
         String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
+        assertEquals(result, output);
     }
+
     @Test
-    void testGenerateJsonlikeJson() throws Exception {
+    void testGenerateNestedYamllikeJson() throws Exception {
         String format = "json";
-        String path1 = "src/test/resources/file1.json";
-        String path2 = "src/test/resources/file2.json";
-        String path3 = "src/test/resources/file12Jsonn";
-        String fileThirdJson = generatePathToFile(path3);
+        String path1 = String.valueOf(getFixturePath("file1.yaml"));
+        String path2 = String.valueOf(getFixturePath("file2.yaml"));
+        String result = readFixture("result_json.json");
         String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
-    }
-    @Test
-    void testGenerateNestedJsonlikeJson() throws Exception {
-        String format = "json";
-        String path1 = "src/test/resources/file31.json";
-        String path2 = "src/test/resources/file32.json";
-        String path3 = "src/test/resources/file34JsonnNested";
-        String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
-    }
-    @Test
-    void testGenerateNestedStylishYaml() throws Exception {
-        String format = "stylish";
-        String path1 = "src/test/resources/file41.yaml";
-        String path2 = "src/test/resources/file42.yaml";
-        String path3 = "src/test/resources/file34.json";
-        String fileThirdJson = generatePathToFile(path3);
-        String output = Differ.generate(path1, path2, format);
-        assertEquals(fileThirdJson, output);
+        assertEquals(result, output);
     }
 }
