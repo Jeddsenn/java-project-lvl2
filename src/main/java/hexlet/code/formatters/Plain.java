@@ -5,38 +5,28 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-
-    private static final String STATUS = "status";
-    private static final String DELETED = "deleted";
-    private static final String ADDED = "added";
-    private static final String CHANGED = "changed";
-    private static final String KEY = "key";
-    private static final String VALUE = "value";
-    private static final String VALUE1 = "value1";
-    private static final String VALUE2 = "value2";
-    private static final String PROPERTY = "Property ";
     public static String render(List<Map<String, Object>> listOfDifferences) {
         StringBuilder result = new StringBuilder();
         for (Map<String, Object> l : listOfDifferences) {
-            var status = l.get(STATUS);
-            var value = stringify(l.get(VALUE));
-            var value1 = stringify(l.get(VALUE1));
-            var value2 = stringify(l.get(VALUE2));
-            var key = addStringSymbol(l.get(KEY));
-            if (status.equals(DELETED)) {                      //removed
-                result.append(PROPERTY)
+            var status = l.get("status");
+            var value = stringify(l.get("value"));
+            var value1 = stringify(l.get("value1"));
+            var value2 = stringify(l.get("value2"));
+            var key = addStringSymbol(l.get("key"));
+            if (status.equals("deleted")) {                      //removed
+                result.append("Property ")
                         .append(key)
                         .append(" was removed")
                         .append("\n");
             }
-            if (status.equals(ADDED)) {                                      //added
-                result.append(PROPERTY)
+            if (status.equals("added")) {                                      //added
+                result.append("Property ")
                         .append(key)
                         .append(" was added with value: ")
                         .append(value)
                         .append("\n");
-            } else if (status.equals(CHANGED)) {                     //updated
-                result.append(PROPERTY)
+            } else if (status.equals("changed")) {                     //updated
+                result.append("Property ")
                         .append(key)
                         .append(" was updated. From ")
                         .append(value1)
@@ -58,6 +48,7 @@ public class Plain {
         }
         return value;
     }
+
     static Object addStringSymbol(Object value) {
         if (value instanceof String) {
             return "'" + value + "'";
